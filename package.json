@@ -1,0 +1,36 @@
+{
+  "name": "slr",
+  "version": "0.0.1",
+  "description": "simple livereload server cli",
+  "main": "index.js",
+  "bin": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js || true"
+  },
+  "keywords": [
+    "static",
+    "assets",
+    "livereload",
+    "cli"
+  ],
+  "author": "Jean Carlos Meninno",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^0.18.0",
+    "chokidar": "^0.11.1",
+    "commander": "^2.5.0",
+    "connect": "^3.3.3",
+    "handlebars": "^2.0.0",
+    "mime": "^1.2.11",
+    "request-promise": "^0.3.2",
+    "tiny-lr": "^0.1.4",
+    "when": "^3.6.3"
+  },
+  "devDependencies": {
+    "coveralls": "^2.11.2",
+    "istanbul": "^0.3.2",
+    "mocha": "^2.0.1",
+    "touch": "0.0.3"
+  }
+}
