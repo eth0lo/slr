@@ -9,7 +9,7 @@ cli
   .version('0.0.1')
   .option('-p, --port <port>'            , 'Change static server port [8000]', 8000)
   .option('-P, --livereload-port <port>' , 'Change livereload port [35729]', 35729)
-  .option('-d, --directory <path>'       , 'Change the default directory for serving files [.]', __dirname)
+  .option('-d, --directory <path>'       , 'Change the default directory for serving files [.]', process.cwd())
   .parse(process.argv);
 
 
