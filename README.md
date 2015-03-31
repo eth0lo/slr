@@ -1,6 +1,6 @@
 # SLR
 
-SLR (simple live reaload) is a small command line utility that is able to spin a small webserver with livereaload functionality build in.
+SLR (simple live reload) is a small command line utility that is able to spin a small webserver with livereaload functionality build in.
 
 ## Usuage
 
