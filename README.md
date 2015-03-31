@@ -1,4 +1,5 @@
 # SLR
+![Dependency status](https://david-dm.org/eth0lo/slr.svg)
 
 SLR (simple live reload) is a small command line utility that is able to spin a small webserver with livereaload functionality build in.
 
