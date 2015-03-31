@@ -19,3 +19,6 @@ $ slr --help
     -P, --livereload-port <port>  Change livereload port [35729]
     -d, --directory <path>        Change the default directory for serving files [.]
 ```
+
+## Licence
+[MIT Licence](http://opensource.org/licenses/MIT-license.php) 
