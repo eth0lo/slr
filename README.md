@@ -22,6 +22,7 @@ $ slr --help
     -p, --port <port>             Change static server port [8000]
     -P, --livereload-port <port>  Change livereload port [35729]
     -d, --directory <path>        Change the default directory for serving files [.]
+    -s, --spa                     Return index.html when HTML request is not found
 ```
 
 ## Licence
