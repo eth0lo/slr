@@ -1,5 +1,5 @@
 var connect  = require('connect'),
-    assets   = require(__base + 'middlewares/assets'),
+    assets   = require('serve-static'),
     injector = require(__base + 'middlewares/injector');
 
 
@@ -8,6 +8,7 @@ function StaticServer (options) {
   this.port           = options.port;
   this.directory      = options.directory;
   this.livereloadPort = options.livereloadPort;
+  this.spa            = options.spa;
   this.silent         = false || options.silent;
   this.server;
 
@@ -18,11 +19,10 @@ StaticServer.prototype.initServer = function() {
   this._server
     .use(injector({
       directory: this.directory,
-      livereloadPort: this.livereloadPort
+      livereloadPort: this.livereloadPort,
+      spa: this.spa
     }))
-    .use(assets({
-      directory: this.directory
-    }));
+    .use(assets(this.directory));
 };
 
 StaticServer.prototype.start = function() {

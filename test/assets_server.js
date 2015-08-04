@@ -30,68 +30,22 @@ describe('Asset Server', function() {
   });
 
 
-  describe('Serving files', function() {
-
-    it('should serve a file from the especified directory matching the url', function(next) {
-      var file = 'http://localhost:' + config.port + '/a.css';
-
-      assets.start();
-      assets.server.on('listening', function() {
-
-        request({ url: file, resolveWithFullResponse: true })
-          .then(function(response) {
-              assert.equal(response.headers['content-type'], 'text/css');
-              assert.equal(response.statusCode, 200);
-              assert.equal(response.body, 'body { background-color: red; }\n')
-              next()
-            });
-      });
-    });
-
-
-    it('should serve a file from the especified nested directory matching the url', function(next) {
-      var file = 'http://localhost:' + config.port + '/nested/b.css';
-
-      assets.start();
-      assets.server.on('listening', function() {
-
-        request({ url: file, resolveWithFullResponse: true })
-          .then(function(response) {
-              assert.equal(response.headers['content-type'], 'text/css');
-              assert.equal(response.statusCode, 200);
-              assert.equal(response.body, 'body { background-color: blue; }\n')
-              next()
-            });
-      });
-    });
-
-
-    it('should return a 404 if the file does not exist in the directory', function(next) {
-      var file = 'http://localhost:' + config.port + '/c.css';
-
-      assets.start();
-      assets.server.on('listening', function() {
-
-        request({ url: file, resolveWithFullResponse: true })
-          .catch(function(response) {
-              assert.equal(response.statusCode, 404);
-              next()
-            });
-      });
-    });
-  });
-
-
   describe('Injecting livereload script', function() {
 
     it('should inject the script when serving html', function(next) {
-      var file = 'http://localhost:' + config.port;
+      var requestOptions = {
+        url: 'http://localhost:' + config.port,
+        resolveWithFullResponse: true,
+        headers: {
+          'Accept': 'text/html'
+        }
+      };
 
       assets.start();
       assets.server.on('listening', function() {
         var responseHtml;
 
-        when.join(request({ url: file, resolveWithFullResponse: true }), template)
+        when.join(request(requestOptions), template)
           .then(function(args){
             var response = args[0],
                 contents = args[1];

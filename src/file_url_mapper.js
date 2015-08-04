@@ -4,6 +4,7 @@ var path = require('path'),
 
 function FileUrlMapper(options) {
   this.base = options.directory;
+  this.spa  = options.spa;
 }
 
 FileUrlMapper.prototype.hasTrailingSlash = function(url) {
@@ -19,6 +20,8 @@ FileUrlMapper.prototype.relativeFilePath = function(url) {
 };
 
 FileUrlMapper.prototype.pathFromUrl = function(url) {
+  if(this.spa) return path.relative(this.base, 'index.html');
+
   return path.join(this.base, this.relativeFilePath(url));
 };
 

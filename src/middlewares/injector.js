@@ -10,7 +10,7 @@ var FileUrlMapper = require(__base + 'file_url_mapper'),
 var templatePath  = __base + 'templates/livereload_script.hbs',
     template      = read(templatePath, 'utf8');
 
-var fileUrlMapper, livereloadPort;
+var directory, fileUrlMapper, livereloadPort, spa;
 
 function send(res) {
   return function(html) {
@@ -51,10 +51,11 @@ function injector(req, res, next) {
 }
 
 function scriptInjector(options) {
-  var directory = options.directory;
-
+  directory      = options.directory;
   livereloadPort = options.livereloadPort;
-  fileUrlMapper = new FileUrlMapper({directory: directory});
+  spa            = options.spa;
+
+  fileUrlMapper = new FileUrlMapper({directory: directory, spa: spa});
 
   return injector;
 }

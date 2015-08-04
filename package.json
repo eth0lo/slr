@@ -24,6 +24,7 @@
     "handlebars": "^2.0.0",
     "mime": "^1.2.11",
     "request-promise": "^0.3.2",
+    "serve-static": "^1.10.0",
     "tiny-lr": "^0.1.4",
     "when": "^3.6.3"
   },
