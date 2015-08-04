@@ -20,7 +20,7 @@ FileUrlMapper.prototype.relativeFilePath = function(url) {
 };
 
 FileUrlMapper.prototype.pathFromUrl = function(url) {
-  if(this.spa) return path.relative(this.base, 'index.html');
+  if(this.spa) return path.join(this.base, this.relativeFilePath('index.html'));
 
   return path.join(this.base, this.relativeFilePath(url));
 };
