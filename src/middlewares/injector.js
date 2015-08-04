@@ -2,7 +2,6 @@ var FileUrlMapper = require(__base + 'file_url_mapper'),
     cheerio       = require('cheerio'),
     fs            = require('fs'),
     handlebars    = require('handlebars'),
-    mime          = require('mime'),
     nodefn        = require('when/node'),
     path          = require('path'),
     read          = nodefn.lift(fs.readFile),
@@ -33,12 +32,18 @@ function inject(html) {
   });
 }
 
+function isHTML(req) {
+  var headers = req.headers;
+  var accepts = headers.accept;
+
+  return !!~accepts.indexOf('text/html');
+}
+
 function injector(req, res, next) {
+  if(!isHTML(req)) return next();
+
   var url = urlParser.parse(req.url, true);
   var filePath = fileUrlMapper.pathFromUrl(url.pathname);
-
-  // Continue the chain if the file is not html
-  if (mime.lookup(filePath) != 'text/html') return next();
 
   read(filePath, 'utf8')
     .then(inject)
