@@ -10,6 +10,7 @@ cli
   .option('-p, --port <port>'            , 'Change static server port [8000]', 8000)
   .option('-P, --livereload-port <port>' , 'Change livereload port [35729]', 35729)
   .option('-d, --directory <path>'       , 'Change the default directory for serving files [.]', process.cwd())
+  .option('-s, --spa'                    , 'Return index.html when HTML request is not found', false)
   .parse(process.argv);
 
 
@@ -19,7 +20,8 @@ var AssetServer = require(__base + 'assets_server');
 var assetServer = new AssetServer({
   port: cli.port,
   directory: cli.directory,
-  livereloadPort: cli.livereloadPort
+  livereloadPort: cli.livereloadPort,
+  spa: cli.spa
 });
 
 assetServer.start();
