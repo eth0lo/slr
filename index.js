@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 
 global.__base = __dirname + '/src/';
+var pjson = require('./package.json');
 
 // Commands
 var cli = require('commander');
 
 cli
-  .version('0.0.1')
+  .version(pjson.version)
   .option('-p, --port <port>'            , 'Change static server port [8000]', 8000)
   .option('-P, --livereload-port <port>' , 'Change livereload port [35729]', 35729)
   .option('-d, --directory <path>'       , 'Change the default directory for serving files [.]', process.cwd())
