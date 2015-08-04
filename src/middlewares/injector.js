@@ -35,6 +35,7 @@ function inject(html) {
 function isHTML(req) {
   var headers = req.headers;
   var accepts = headers.accept;
+  if(!accepts) return false;
 
   return !!~accepts.indexOf('text/html');
 }
